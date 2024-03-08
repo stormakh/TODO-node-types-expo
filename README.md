@@ -46,7 +46,7 @@ To get the frontend running:
 4. The app should now be running on your mobile device.
 
 ### Running the Backend
-To get the backend running:
+To get the backend running, open a new terminal:
 
 1. Navigate to the backend directory:
     ```sh
@@ -69,4 +69,4 @@ To get the backend running:
     npm start
     ```
 
-5. The backend server should now be running on http://localhost:3000
+5. The backend server should now be running on http://localhost:8000
