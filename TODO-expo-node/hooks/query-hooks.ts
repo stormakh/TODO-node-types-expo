@@ -24,7 +24,7 @@ export const TodoApi = {
 
   //Get all tasks
   fetchTasks: async (): Promise<Task[]> => {
-    const response = await axios.get(`${ApiUrl}/tasks`, {
+    const response = await axios.get(`${ApiUrl}/api/tasks`, {
       headers: {
         Authorization: "Bearer " + (await getValueFor("token")),
       },
@@ -34,7 +34,7 @@ export const TodoApi = {
 
   //Get a single task by ID
   fetchTask: async (id: string): Promise<Task> => {
-    const response = await axios.get(`${ApiUrl}/task/${id}`, {
+    const response = await axios.get(`${ApiUrl}/api/task/${id}`, {
       headers: {
         Authorization: "Bearer " + (await getValueFor("token")),
       },
@@ -44,7 +44,7 @@ export const TodoApi = {
 
   //Get tasks by tag
   fetchTasksByTag: async (tag: string): Promise<Task[]> => {
-    const response = await axios.get(`${ApiUrl}/tag/${tag}`, {
+    const response = await axios.get(`${ApiUrl}/api/tag/${tag}`, {
       headers: {
         Authorization: await getValueFor("token"),
       },
@@ -55,7 +55,7 @@ export const TodoApi = {
   //Get tasks by due date
   fetchTasksByDueDate: async (date: Date): Promise<Task[]> => {
     const response = await axios.get(
-      `${ApiUrl}/due/${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
+      `${ApiUrl}/api/due/${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`,
       {
         headers: {
           Authorization: await getValueFor("token"),
@@ -68,7 +68,7 @@ export const TodoApi = {
   //Add a new task
   addTask: async (todo: Omit<Task, "id">): Promise<number> => {
     const token = await getValueFor("token");
-    const response = await axios.post(`${ApiUrl}/task`, todo, {
+    const response = await axios.post(`${ApiUrl}/api/task`, todo, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -79,7 +79,7 @@ export const TodoApi = {
   //Remove a task
   removeTask: async (id: number) => {
     const token = await getValueFor("token");
-    await axios.delete(`${ApiUrl}/task/${id}`, {
+    await axios.delete(`${ApiUrl}/api/task/${id}`, {
       headers: {
         Authorization: "Bearer " + token,
       },
@@ -90,7 +90,7 @@ export const TodoApi = {
   toggleTaskCompletion: async (id: number) => {
     const token = await getValueFor("token");
     console.log("toggling task completion with token", token , "and id", id);
-    const resposnse = await axios.post(`${ApiUrl}/task/toggle/${id}`,{}, {
+    const resposnse = await axios.post(`${ApiUrl}/api/task/toggle/${id}`,{}, {
       headers: {
         Authorization: "Bearer " + token,
       },

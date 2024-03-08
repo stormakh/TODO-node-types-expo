@@ -16,7 +16,7 @@ import jwt from "jsonwebtoken";
 require("dotenv").config();
 
 const app: Express = express();
-const port: number = 8000;
+const port = process.env.PORT || 8000;
 
 app.use(express.json()); // Middleware to parse JSON bodies
 
@@ -24,11 +24,11 @@ app.use(express.json()); // Middleware to parse JSON bodies
 const JWT_SECRET = process.env.JWT_SECRET || "default-secret";
 
 // Middleware to authenticate jwt
-app.use(
+app.use("/api",
   expressjwt({
     secret: JWT_SECRET,
     algorithms: ["HS256"],
-  }).unless({ path: ["/token"] })
+  })
 );
 
 // GET /token : returns a new token and a new user
@@ -51,7 +51,7 @@ app.get("/token/:user", (req: Request, res: Response) => {
 const supaClient = connectToSupabase();
 
 // POST /task/ : create a task, returns ID
-app.post("/task", (req: Request, res: Response) => {
+app.post("api/task", (req: Request, res: Response) => {
   const { title, date, tag, completed, AnonUser } = req.body;
 
   if (!title || !date || !tag || !completed) {
@@ -73,7 +73,7 @@ app.post("/task", (req: Request, res: Response) => {
 });
 
 //Toggle a Tasks completion status
-app.post("/task/toggle/:taskid"),
+app.post("api/task/toggle/:taskid"),
   (req: Request, res: Response) => {
     const { taskid } = req.params;
     if (taskid !== undefined) {
@@ -90,7 +90,7 @@ app.post("/task/toggle/:taskid"),
   };
 
 // GET /task/<taskid> : returns a single task by ID
-app.get("/task/:taskid", (req: Request, res: Response) => {
+app.get("api/task/:taskid", (req: Request, res: Response) => {
   const { taskid } = req.params;
   getTaskById(supaClient, taskid)
     .then((task) => {
@@ -102,7 +102,7 @@ app.get("/task/:taskid", (req: Request, res: Response) => {
 });
 
 // GET /task/ : returns all tasks
-app.get("/tasks", (req: Request, res: Response) => {
+app.get("api/tasks", (req: Request, res: Response) => {
   if (req.headers.authorization !== undefined) {
     getAllTasksByUser(supaClient, req.headers.authorization)
       .then((tasks) => {
@@ -115,7 +115,7 @@ app.get("/tasks", (req: Request, res: Response) => {
 });
 
 // DELETE /task/<taskid> : delete a task by ID
-app.delete("/task/:taskid", (req: Request, res: Response) => {
+app.delete("api/task/:taskid", (req: Request, res: Response) => {
   const { taskid } = req.params;
   if (taskid !== undefined) {
     deleteTaskById(supaClient, taskid)
@@ -130,7 +130,7 @@ app.delete("/task/:taskid", (req: Request, res: Response) => {
 });
 
 // GET /tag/<tagname> : returns list of tasks with this tag
-app.get("/tag/:tagname", async (req: Request, res: Response) => {
+app.get("api/tag/:tagname", async (req: Request, res: Response) => {
   const { tagname } = req.params;
   const tasks = await getTasksWithTags(supaClient, tagname);
   if (typeof tasks !== undefined && tasks && tasks.length === 0) {
@@ -140,7 +140,7 @@ app.get("/tag/:tagname", async (req: Request, res: Response) => {
 });
 
 // GET /due/<yy>/<mm>/<dd> : returns list of tasks due by this date
-app.get("/due/:yy/:mm/:dd", async (req: Request, res: Response) => {
+app.get("api/due/:yy/:mm/:dd", async (req: Request, res: Response) => {
   const { yy, mm, dd } = req.params;
   const date = `${yy}-${mm}-${dd}`;
 
