@@ -12,7 +12,7 @@ back with
 -supabase as a host for postgres
 
 ### Run Front
-cd TODO-expo-node
+cd ./TODO-expo-node
 npx expo start
 
 ### Run Back
@@ -21,5 +21,5 @@ npm start
 
 or 
 
-cd api
+cd ./api
 npm dev
