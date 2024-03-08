@@ -16,10 +16,10 @@ cd ./TODO-expo-node
 npx expo start
 
 ### Run Back
-cd api
+cd ./api
 npm start 
 
 or 
 
 cd ./api
-npm dev
+npm run dev
