@@ -26,10 +26,12 @@ To get the frontend running:
 
 1. Clone the repository and navigate to the front-end directory:
     ```sh
-    git clone https://github.com/stormakh/TODO-node-types-expo.git
+    git clone https://github.com/stormakh/TODO-node-types-expo.git .
+    cd ./TODO-expo-node
+    npm install
     ```
 
-2. Change the .env file inside this folder, replace localhost for your actual local ipv4 address in order to have your phone connected to the local server on your machine
+2. Change the example.env file inside this folder and rename it to .env, replace localhost for your actual local ipv4 address in order to have your phone connected to the local server on your machine
     For example, instead of  EXPO_PUBLIC_API_URL=http://localhost:8000 -> go for EXPO_PUBLIC_API_URL=http://192.168.0.116:8000
     You can look for your actual ip by running 'ipconfig' in windows or 'ip addr' in Linux
 
@@ -39,9 +41,9 @@ To get the frontend running:
     npm start
     ```
 
-3. Open the Expo app on your mobile device and scan the QR code displayed in the terminal.
+4. Open the Expo app on your mobile device and scan the QR code displayed in the terminal.
 
-4. The app should now be running on your mobile device.
+5. The app should now be running on your mobile device.
 
 ### Running the Backend
 To get the backend running, open a new terminal:
