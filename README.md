@@ -10,3 +10,16 @@ front with
 back with
 -express-jwt for token signing
 -supabase as a host for postgres
+
+### Run Front
+cd TODO-expo-node
+npx expo start
+
+### Run Back
+cd api
+npm start 
+
+or 
+
+cd api
+npm dev
