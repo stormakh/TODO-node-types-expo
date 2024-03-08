@@ -58,15 +58,17 @@ To get the backend running, open a new terminal:
     npm install
     ```
 
-3. Transpile TS into JS:
+3. Rename example.env to .env and paste in all the required credentials
+
+4. Transpile TS into JS:
     ```sh
     npx tsc
     ```
 
 
-4. Start the server:
+5. Start the server:
     ```sh
     npm start
     ```
 
-5. The backend server should now be running on http://localhost:8000
+6. The backend server should now be running on http://localhost:8000
