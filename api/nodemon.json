@@ -1,0 +1,7 @@
+{
+    "watch": ["."],
+    "ext": "ts",
+    "ignore": ["node_modules", "dist", "**/*.spec.ts"],
+    "exec": "tsc && node dist/api/index.js"
+  }
+  
