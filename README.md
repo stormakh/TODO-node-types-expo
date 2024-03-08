@@ -26,9 +26,7 @@ To get the frontend running:
 
 1. Clone the repository and navigate to the front-end directory:
     ```sh
-    git clone <repository-url>
-    cd TODO-expo-node
-    npm install
+    git clone https://github.com/stormakh/TODO-node-types-expo.git
     ```
 
 2. Change the .env file inside this folder, replace localhost for your actual local ipv4 address in order to have your phone connected to the local server on your machine
